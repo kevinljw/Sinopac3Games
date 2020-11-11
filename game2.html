@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sinopac Game #2</title>
+    <meta name="author" content="Sinopac Game">
+    <meta name="description" content="Example description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    
+    <!-- 跳頁 -->
+    <link rel="stylesheet" href="./public/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <link rel="stylesheet" href="public/css/common.css">
+    <link rel="stylesheet" href="public/css/style-game2.css">
+    <link rel="icon" type="image/x-icon" href="" />
+</head>
+
+<!-- 跳頁 -->
+<script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<body>
+    <main>
+        <div data-role='page' id='page1'>
+            <div class="container">
+                <!-- 加音樂 -->
+                <audio id="myAudio" muted="true" autoplay="true">
+                    <source src="./public/game2/翻牌遊戲.mp3" type="audio/mpeg">
+                </audio>
+                <div class="row align-items-center justify-content-around">
+                    <div class='col title align-self-center'>
+                        <img src="./public/game2/img/title.png" alt="">
+                    </div>
+                    <div class="col room"></div>
+                </div>
+                <br><br>
+            </div>
+        </div>
+        <div data-role="page" id='page_ans'>
+            <div class="container">
+                <div class="row align-items-center justify-content-around">
+                    <div class='col title align-self-center'>
+                        <img src="./public/game2/img/title.png" alt="">
+                    </div>
+                    <div class="col align-self-center">
+                        <img src="" alt="" id='ans'>
+                        <button id='playagain' value=''><img src="./public/game2/img/btn-playagain.png" alt="" ></button>
+                    </div>
+                </div>
+                <div class="row align-items-right">
+                    <div class="col">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    <footer></footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <!-- 跳頁 -->
+    <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+    <script type="text/javascript" src="public/js/game2.js"></script>
+</body></html>

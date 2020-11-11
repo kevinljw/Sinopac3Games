@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sinopac Game #3</title>
+    <meta name="author" content="Sinopac Game">
+    <meta name="description" content="Example description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/common.css">
+
+    <!-- 跳頁 -->
+    <link rel="stylesheet" href="./public/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css"> 
+
+    <link rel="stylesheet" href="public/css/style-game3.css">
+    <link rel="icon" type="image/x-icon" href="" />
+</head>
+
+<!-- 跳頁 -->
+<script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+<body>
+    <header>Sinopac Game #3</header>
+    <main>
+        <!-- 第一頁 -->
+        <div data-role='page' id='page1'>
+            <div class="container">
+                <!-- 加音樂 -->
+                <audio id="myAudio" muted="true" autoplay="true">
+                    <source src="./public/game3/配對遊戲.mp3" type="audio/mpeg">
+                </audio>
+                <div class='row align-items-center justify-content-center'>
+                    <div class="col title">
+                        <img id='titleImg' src="./public/game3/素材/title.png" alt="">
+                        <button id='startImg'></button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- 第二頁 -->
+        <div data-role='page' id='page2'>
+            
+            <div class="container">
+                <div class='row align-items-center justify-content-center'>
+                    <div class="col title">
+                        <img id='titleImg' src="./public/game3/素材/title.png" alt="">
+                    </div>
+                </div>
+                <div class="row draggable-items align-items-end" id="drag-1st">
+                    
+                </div>
+                <div class="row draggable-items" id="drag-2nd">
+                
+                </div>
+                <div class="row align-items-center justify-content-center">
+                    <div class="matching-pairs">
+
+                    </div>
+                </div>
+                <div class='modal fade' id='myModal'>
+                    <div class="modal-dialog">
+                        <div class="modal-content" id='window'>
+                            <div class="modal-body"></div>
+                            <div class="modal-footer">
+                                <button id='playagain' data-dismiss='modal'></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="draggable-items">
+            <!-- Will be dynamically populated - Example Element: -->
+            <!-- <i class="fab fa-codepen draggable" draggable="true" style="color: #111111;" id="codepen"></i> -->
+        </section>
+        <section class="matching-pairs">
+            <!-- Will be dynamically populated - Example Element: -->
+            <!-- <div class="matching-pair"><span class="label">Codepen</span><span class="droppable" data-brand="codepen"></span></div> -->
+        </section>
+    </main>
+    <footer></footer>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+
+    <!-- 跳頁 -->
+    <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <!-- bootstrap -->
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="public/js/game3.js"></script>
+</body></html>

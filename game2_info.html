@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sinopac Game #2</title>
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="public/css/common.css">
+    <link rel="stylesheet" href="public/css/style-game2.css">
+</head>
+
+<style>
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+table{
+    border:20px solid #eeeeee
+}
+
+th,td{
+    border:20px solid #eeeeee;
+    /* padding:50px */
+    /* margin:0; */
+    /* padding:0; */
+}
+
+#table_button{
+    margin:0;
+    padding:0;
+}
+#button{
+    border:0;
+    margin:0;
+    padding:12px;
+    background-color:#bdbdbd;
+    width:100%
+}
+#button:hover{
+    border: 1.5px solid black; 
+    
+}
+
+
+</style>
+
+<body>
+    <header style='text-align:center'>Sinopac Game #2</header>
+    <div style='text-align:center' class="container" >
+        <br>
+        <br>
+        <br>
+        <table  align='center' width='50%' cellpadding='30'>
+            <tr>
+                <th>A配對</th>
+                <th>A配對介紹</th>
+            </tr>
+            <tr>
+                <th>B配對</th>
+                <th>B配對介紹</th>
+            </tr>
+            <tr>
+                <th>C配對</th>
+                <th>C配對介紹</th>
+            </tr>
+            <tr>
+                <th colspan='2' id='table_button'><button id='button'>再玩一次</button></th>
+            </tr>
+        </table>
+        
+    </div>
+    
+        
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="public/js/game2.js"></script>
+</body></html>

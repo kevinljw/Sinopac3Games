@@ -1,0 +1,386 @@
+@charset "UTF-8";
+@keyframes shiny {
+  0% {
+    fill: white;
+  }
+  50% {
+    fill: #ffc242;
+  }
+  100% {
+    fill: white;
+  }
+}
+
+/* 答錯頁面的動畫 */
+@keyframes showImg {
+  from {top:500px;}
+  to {top:0px;}
+}
+
+/* 設定字體 */
+@font-face{
+  font-family: myFont1;
+  src: url('../game1/font/DFHeiStd-W5.otf')
+}
+
+/* 設定字體 */
+@font-face{
+	font-family: myFont2;
+	src: url('../game2/img/HuaKangLangManFengW7-2.ttc')
+  }
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "微軟正黑體";
+}
+
+body {
+  background-image:url('../game1/答題頁/bg.jpg');
+}
+
+/* 隱藏卷軸 */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.container {
+  max-width: 1350px;
+  min-width: 400px;
+  margin: 0 auto;
+  overflow: hidden;
+  /* vertical-align: middle; */
+}
+
+header {
+  text-align: center;
+  padding: 50px;
+}
+
+img[src*='KV-right']{
+  position: absolute;
+  height: 100%;
+  object-fit: contain;
+  z-index: 1;
+}
+
+
+.title .anstitle{
+  object-fit: contain;
+}
+
+.title .timeImg{
+  background-image: url('../game1/答題頁/time.png');
+  background-size: cover;
+  width: 150px;
+  height: 150px;
+  position:relative;
+}
+
+div.row{
+  padding: 10px;
+}
+
+div.sec{
+  font-family: myFont2,'微軟正黑體';
+  position: absolute;
+  top:55%;
+  left:40%;
+  transform: translate(-50%,-50%);
+	font-size: 40px;
+	color: white;
+}
+
+div.row img{
+  width:80%;
+}
+
+/* jquery-mobile-background */
+.ui-page { 
+  background-image: url('../../public/game1/答題頁/bg.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#page_ans{
+  background-position: center;
+  background-color: #010101;
+}
+
+p.question{
+  font-size: 25px;
+  color: #FFFFFF;
+}
+
+div.col{
+  position: relative;
+}
+
+
+div.col.title img{
+  vertical-align: middle;
+  width:100%;
+}
+
+/* 底下皆為卡片 */
+div.card{
+  position: relative;
+  background: transparent; 
+  margin: 15px;
+  padding: 0;
+  font-family: myFont1,'微軟正黑體';
+}
+
+div.card:hover{
+  cursor:pointer;
+}
+
+div.card div{
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-60%);
+  font-size: 35px;
+  font-weight: bold;
+}
+
+div.card img{
+  width: 80%;
+  margin: 10px auto;
+}
+
+button#playagain{
+  background: transparent; 
+  border:0;
+  position:fixed;
+  bottom: 0px;
+  box-shadow: none;
+  cursor: default;
+}
+
+
+button#playagain img{
+  float:right;
+  border-radius: 12px;
+  padding: 10px;
+  width: 10%;
+  cursor: pointer;
+  
+}
+
+button#playagain img:hover{
+  box-shadow: none;
+}
+
+
+svg{
+  width:98%;
+  position: absolute;
+  left: 50%;
+  top: 49%;
+  transform: translate(-50%, -50%);
+  /* bottom: 20px; */
+}
+
+.lightGif{
+  width: 150px !important;
+  height:300px;
+  background-color: blanchedalmond;
+  object-fit: cover;
+}
+
+.darkGif{
+  width:2px;
+  height:100px;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+}
+
+#page_ques .wrongAns img{
+  width: 100%;
+  object-fit: contain;
+  animation: showImg 0.8s linear 4;
+  -webkit-animation: showImg 0.8s linear 4;
+
+}
+
+
+section.turntable {
+  /* display: inline; */
+  position: relative;
+  z-index:2;
+  max-width: 1000px;
+  max-height: 1000px;
+  /* height:100%; */
+}
+section.turntable button.turntable_btn {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: none;
+  border: none;
+  outline: none;
+  font-weight: 900;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  /* font-size: 70px; */
+  /* color: #0080C0; */
+  background-image: url('../game1/輪盤/pointer.png');
+  background-size: cover;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+section.turntable button.turntable_btn:hover{
+  background-color: transparent;
+}
+
+section.turntable button.turntable_btn:active, section.turntable button.turntable_btn:disabled {
+  cursor: default;
+  opacity: 100;
+  box-shadow: none;
+}
+
+section.turntable button.turntable_btn:focus{
+  cursor: pointer;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+@media screen and (max-width: 767px) {
+  section.turntable button.turntable_btn {
+    font-size: 42px;
+  }
+}
+section.turntable div.list {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: none;
+}
+section.turntable div.list {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 70%;
+  height: 70%;
+  text-align: center;
+}
+section.turntable div.list ul {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  transform: rotate(0deg);
+}
+section.turntable .turntable_btn.go {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+section.turntable div.list ul li {
+  color: #fff;
+  font-size: 22.4px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+section.turntable div.list ul li:nth-child(2) {
+  transform: rotate(315deg);
+}
+section.turntable div.list ul li:nth-child(3) {
+  transform: rotate(270deg);
+}
+section.turntable div.list ul li:nth-child(4) {
+  transform: rotate(225deg);
+}
+section.turntable div.list ul li:nth-child(5) {
+  transform: rotate(180deg);
+}
+section.turntable div.list ul li:nth-child(6) {
+  transform: rotate(135deg);
+}
+section.turntable div.list ul li:nth-child(7) {
+  transform: rotate(90deg);
+}
+section.turntable div.list ul li:nth-child(8) {
+  transform: rotate(45deg);
+}
+@media screen and (max-width: 767px) {
+  section.turntable div.list ul li {
+    font-size: 14px;
+  }
+}
+section.turntable div.list ul li img {
+  width: 130px;
+  margin-top: 80px;
+}
+@media screen and (max-width: 767px) {
+  section.turntable div.list ul li img {
+    width: 40px;
+  }
+}
+@media screen and (max-width: 400px) {
+  section.turntable div.list ul li img {
+    display: none;
+  }
+}
+section.turntable svg > circle {
+  fill: none;
+  stroke: #006fa7;
+  stroke-width: 5px;
+}
+section.turntable svg g.polyline.go {
+  animation: go 0.8s linear 4;
+  -webkit-animation: go 0.8s linear 4;
+}
+section.turntable svg g.polyline polyline {
+  fill: #0080C0;
+}
+section.turntable svg g.polyline polyline:nth-child(odd) {
+  fill: #00a2f3;
+}
+section.turntable svg g.circle circle {
+  fill: #fff;
+  stroke: none;
+  box-shadow: 0px 2px 5px #ccc;
+}
+section.turntable svg g.circle circle:nth-child(odd) {
+  animation: shiny 0.8s linear infinite;
+  -webkit-animation: shiny 0.8s linear infinite;
+}
+section.turntable svg g.circle circle:nth-child(odd).go {
+  animation: go 0.8s linear 4, shiny 0.8s linear infinite;
+  -webkit-animation: go 0.8s linear 4, shiny 0.8s linear infinite;
+}
+section.turntable svg g.circle circle:nth-child(even) {
+  animation: shiny 0.8s 0.5s linear infinite;
+  -webkit-animation: shiny 0.8s 0.5s linear infinite;
+}
+section.turntable svg g.circle circle:nth-child(even).go {
+  animation: go 0.8s 0.8s linear 4, shiny 0.8s 0.5s linear infinite;
+  -webkit-animation: go 0.8s linear 4, shiny 0.8s 0.5s linear infinite;
+}
+section.turntable svg g.mark circle {
+  fill: #FFB10F;
+}
+section.turntable svg g.mark circle.round {
+  fill: none;
+  stroke: #ffebc2;
+}
+section.turntable svg g.mark polyline {
+  fill: #FFB10F;
+  stroke: none;
+}
+section.turntable svg g.bottom {
+  fill: rgba(0, 0, 0, 0.4);
+}
+

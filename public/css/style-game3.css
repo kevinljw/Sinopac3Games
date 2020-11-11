@@ -1,0 +1,296 @@
+/* 字體 */
+@font-face{
+  font-family: myFont1;
+  src: url('../game1/font/DFHeiStd-W5.otf')
+}
+
+/* 字體 */
+@font-face{
+	font-family: myFont2;
+	src: url('../game2/img/HuaKangLangManFengW7-2.ttc')
+  }
+
+/* shake動畫 */
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #333333 !important;
+  background-image: url('../game3/素材/bg.png');
+  color: #111;
+  /* 隱藏卷軸，似乎沒用 */
+  overflow: hidden; 
+}
+
+/* 隱藏卷軸，似乎沒用 */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.draggable-items {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 1rem 1.5rem 1rem;
+  transition: opacity 0.5s;
+  
+}
+
+/* 公司品牌第一列 */
+#drag-1st{
+  width:800px;
+  /* 置中->上下0,左右auto */
+  margin:12px auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 公司品牌第二列 */
+#drag-2nd{
+  width:700px;
+  /* 置中->上下0,左右auto */
+  margin:60px auto;
+}
+
+/* 倒數計時 */
+#cntdown{
+  /* 設定位置讓45秒可以依據 */
+  position: relative;
+  background-image: url('../game3/素材/time.png');
+  background-position: center;
+  background-size: contain;
+  background-color: transparent;
+  border: none;
+  width: 150px;
+  height: 150px;
+}
+
+#cntdown:hover,#cntdown:focus{
+  box-shadow: none;
+  border: none;
+}
+
+/* 倒數計時/答對/答錯的視窗 */
+#window{
+  /* width:700px; */
+  /* position: absolute;
+  top: 150px;
+  left */
+  margin:25% auto;
+  height: 1360px;
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+/* modal */
+.modal-content{
+  background-color: transparent;
+
+}
+/* modal */
+.modal-dialog {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+  /* max-height:1500px; */
+  margin: 1.75rem auto;
+}
+
+/* modal */
+.modal-footer{
+  border:none;
+  /* height:js客製化; */
+}
+
+/* 再挑戰一次按鈕 */
+#playagain{
+  width: 50%;
+  height: 50%;
+  /* 置中 */
+  margin: 0 auto;  
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  background-image: url('../game3/素材/btn-playagain.png');
+  background-position: center;
+  background-size: cover;
+}
+
+
+.draggable {
+  height: 5rem;
+  width: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: bold;
+  margin: 0rem 0.5rem;
+  cursor: move;
+  transition: opacity 0.2s;
+  
+}
+
+/* 倒數結束/答對/答錯的視窗會讓公司品牌disabled */
+.draggable[disabled='disabled'],.draggable[disabled]:hover{
+  /* cursor: default; */
+  /* 讓pointer失去效果，達到無法drag的效果!!! */
+  pointer-events: none;
+  opacity: 1;
+}
+
+.draggable:hover {
+  opacity: 0.5;
+}
+.matching-pairs {
+  transition: opacity 0.5s;
+}
+.matching-pair {
+  height: 6rem;
+  /* width: 22rem; */
+  margin: 1rem 1rem;
+  /* display: flex; */
+  justify-content: center;
+  /* 自訂 */
+  display: inline-flex;
+}
+.matching-pair span {
+  height: 100%;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  user-select: none;
+}
+.label {
+  width: 15rem;
+  font-size: 2rem;
+}
+.droppable {
+  width: 6rem;
+  font-size: 4rem;
+  background-color: transparent;
+  /* border: 3px dashed #111; */
+  transition: 0.2s;
+  /* 自訂 */
+  background-size: cover;
+  background-position: center;
+}
+.droppable-hover {
+  background-color: transparent;
+  transform: scale(1.1);
+}
+
+/* shake動畫 */
+.animated{
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+
+.dragged {
+  user-select: none;
+  opacity: 0.1;
+  cursor: default;
+}
+.draggable.dragged:hover {
+  opacity: 0.1;
+}
+
+@media (max-width: 600px) {
+  html { font-size: 14px; }
+  #play-again-btn { top: -0.4rem; }
+  #play-again-btn.play-again-btn-entrance { transform: translateX(7rem); }
+}
+
+
+/* 背景 */
+.ui-page{
+  background-color: #333333 !important;
+  background-image: url('../game3/素材/bg.png');
+  background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.ui-overlay-a{
+  background-image: url('../game3/素材/bg.png');
+}
+
+/* 自訂 */
+.container{
+  width:1800px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 開始頁的title */
+.title{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 開始頁的title圖片 */
+#titleImg{
+  width: 100%;
+  padding: 30px;
+  margin: 60px;
+}
+
+/* 開始頁的開始按鈕 */
+#startImg{
+  background-image: url('../game3/素材/btn-start.png');
+  background-size: cover;
+  background-position: center;
+  background-color: transparent;
+  border: none;
+  height:250px;
+  width: 250px;
+  padding: 30px;
+}
+
+#startImg:hover,#startImg:focus{
+  box-shadow: none;
+}
+
+/* 每個公司品牌 */
+.icon{
+  width:100px;
+}
+
+/* 秒數 */
+.sec{
+  font-family: myFont2,'微軟正黑體';
+  position: absolute;
+  top:55%;
+  left: 40%;
+  transform: translate(-50%,-50%);
+	font-size: 40px;
+	color: white;
+}

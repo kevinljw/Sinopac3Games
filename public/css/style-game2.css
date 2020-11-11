@@ -1,0 +1,298 @@
+/* 自訂字體 */
+@font-face{
+	font-family: myFont;
+	src: url('../game2/img/HuaKangLangManFengW7-2.ttc')
+}
+
+
+body {
+	margin: 0 auto;
+	background-image: url('../game2/img/bg.jpg');
+	/* 設定背景顏色，避免換頁有白色背景 */
+	background-color: #333333;
+	/* 隱藏卷軸 */
+	overflow: hidden;
+}
+
+/* 隱藏卷軸 */
+body::-webkit-scrollbar {
+	display: none;
+}
+
+.head {
+	width: 100%;
+	text-align: center;
+	margin-top: 25px;
+	font-size: 30px;
+}
+
+.head .time {
+	float: left;
+	width: 200px;
+	text-weight: 650;
+}
+
+.head .start {
+	display: inline-block;
+	margin: 0 auto;
+	margin-top: -20px;
+	background: #7b7c7d;
+	background-image: linear-gradient(to bottom, #7b7c7d, #242424);
+	border-radius: 10px;
+	color: #ffffff;
+	font-size: 22px;
+	padding: 20px 20px 20px 20px;
+	text-decoration: none;
+	text-weight: 600;
+	cursor: pointer;
+}
+
+.head .move {
+	float: right;
+	width: 200px;
+	text-weight: 650;
+}
+
+
+div.title{
+	padding: 20px;
+	margin: 20px;
+}
+
+/* 設定背景顏色 */
+.ui-page { 
+	background-color: #333333;
+	background-image: url('../game2/img/bg.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+
+div.title img{
+	width: 50%;
+	margin-left: 100px;
+}
+
+#ans{
+	width: 100%;
+} 
+
+#playagain{
+	cursor: default;
+	border:0;
+	background: transparent;
+	box-shadow: none;
+}
+
+#playagain img{
+	cursor: pointer;
+	width:30%;
+	float: right;
+	position: relative;
+}
+
+
+div.sec{
+	font-family: myFont,'微軟正黑體';
+	padding-right: 20px;
+	padding-top: 15px;
+	font-size: 50px;
+	color: white;
+}
+
+.room .card {
+	display: inline-flex;
+	width: 160px;
+	height: 160px;
+	position: relative;
+	margin: 5px;
+	transition: .40s;
+	border: 0;
+	-webkit-transform-style: preserve-3d;
+	background: transparent;
+}
+.room .start {
+	display: inline-flex;
+	width: 160px;
+	height: 160px;
+	margin: 5px;
+	position: relative;
+	transition: .40s;
+	-webkit-transform-style: preserve-3d;
+	background: transparent;
+	border:0;
+	box-shadow: none;
+}
+.room .start .face{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: transparent;
+	border: 0;
+	background-image: url('../game2/img/btn-start.png');
+	background-size: contain;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+	text-align: middle;
+	vertical-align:middle;
+	box-shadow: none;
+}
+
+.room .start:focus,.room .start:active{
+	border: none;
+	box-shadow: none;
+}
+
+.room .start .face:focus,.room .start .face:active{
+	border: none;
+	box-shadow: none;
+	
+}
+
+
+.room .card .face {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	-webkit-backface-visibility: hidden;
+	z-index: 2;
+
+}
+.room .card .front {
+	position: absolute;
+	vertical-align: middle;
+	/* margin-left:20px; */
+	background: url('../game2/img/card-back.png');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	z-index: 1;
+}
+.room .card .back {
+	transform: rotateY(-180deg);
+	position: absolute;
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+}
+
+.cflip, .cfliped {
+	transform: rotateY(180deg);
+	transition: .4s;
+	/* transition-delay: 5s;
+	transition-duration: 5s; */
+}
+
+.board {
+	position: relative;
+	width: 400px;
+	top: -425px;
+	height: 300px;
+	border: 15px inset teal;
+	border-radius: 20px;
+	margin: 0 auto;
+	text-align: center;
+	background: #fff;
+	color: #4d4ba3;
+	box-shadow: 0px 0px 50px 0px rgba(50, 50, 50, 0.82);
+}
+
+.board .greet {
+	font-size: 45px;
+	margin: 10px;
+	font-weight: 700;
+}
+
+.board .scr {
+	font-size: 27px;
+	margin: 10px;
+	font-weight: 500;
+}
+
+.board .scr_time {
+	display: inline-flex;
+	font-size: 27px;
+	margin: 10px;
+	font-weight: 600;
+}
+
+.board .scr_move {
+	display: inline-flex;
+	font-size: 27px;
+	margin: 10px;
+	font-weight: 600;
+}
+
+.board .again {
+	display: block;
+	margin: 0 auto;
+	margin-top: 10px;
+	background: #2cbda5;
+	background-image: linear-gradient(to bottom, #2cbda5, #123e59);
+	border-radius: 15px;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 25px;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+}
+
+.board .again:hover {
+	background: #38c5de;
+	background-image: linear-gradient(to bottom, #38c5de, #325063);
+	text-decoration: none;
+}
+
+.me {
+	font-size: 20px;
+	margin-top: 20px;
+	font-weight: 600;
+}
+
+
+@media only screen and (max-width: 890px) {
+	.room .card {
+		width: 95px;
+		height: 95px;
+	}
+
+	.board {
+		top: -385px;
+	}
+}
+@media only screen and (max-width: 690px) {
+	.room .card {
+		width: 65px;
+		height: 65px;
+	}
+
+	.board {
+		width: 300px;
+		top: -325px;
+	}
+}
+@media only screen and (max-width: 400px) {
+	.room .card {
+		width: 40px;
+		height: 40px;
+	}
+
+	.board {
+		width: 300px;
+		top: -125px;
+	}
+}
+
+@media only screen and (max-width: 290px){
+	.room .card {
+		width: 25px;
+		height: 25px;
+	}
+	
+	.board {
+		width: 300px;
+		top: -90px;
+	}
+}
+
+

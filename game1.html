@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <title>Sinopac Game #1</title>
+    <meta name="author" content="Sinopac Game">
+    <meta name="description" content="Example description">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/css/bootstrap.min.css">
+
+    <!-- 跳頁 -->
+    <link rel="stylesheet" href="./public/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+
+    <link rel="stylesheet" href="public/css/common.css">
+    <link rel="stylesheet" href="public/css/style-game1.css">
+    <link rel="icon" type="image/x-icon" href="" />
+</head>
+
+
+
+
+
+<!-- 跳頁 -->
+<script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<body>
+    <header>Sinopac Game #1</header>
+    <main>
+        <!-- 轉盤頁 -->
+        <div data-role='page' id='page1'>
+            <div class="container">
+                <!-- 加音樂 -->
+                <audio id="myAudio" muted="true" autoplay="true">
+                    <source src="./public/game1/輪盤遊戲.mp3" type="audio/mpeg">
+                </audio>
+                <div class='row align-items-end justify-content-around'>
+                    <div class="col title">
+                        <img src="./public/game1/輪盤/KV-left.png" alt="沒有圖片">
+                    </div>
+                    <div class="col title" >
+                        <img src="./public/game1/輪盤/KV-right.png" alt="沒有圖片">
+                        <section class="turntable">
+                            <div class="list">
+                                <ul></ul>
+                            </div>
+                            <button class="turntable_btn">
+                            </button>
+                            <img id='roulette' src="./public/game1/輪盤/roulette-bottom.png" alt=""></img>
+                            <svg style="z-index:-1" viewbox="-50 -50 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <image href="./public/game1/輪盤/light-01.gif" x="-7.5px" y="-49px" height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-02.gif" style="transform:rotate(20deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-01.gif" style="transform:rotate(40deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-02.gif" style="transform:rotate(60deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-01.gif" style="transform:rotate(80deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-02.gif" style="transform:rotate(100deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-01.gif" style="transform:rotate(120deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-02.gif" style="transform:rotate(140deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-01.gif" style="transform:rotate(160deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-02.gif" style="transform:rotate(180deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-01.gif" style="transform:rotate(200deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-02.gif" style="transform:rotate(220deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-01.gif" style="transform:rotate(240deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-02.gif" style="transform:rotate(260deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-01.gif" style="transform:rotate(280deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-02.gif" style="transform:rotate(300deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-01.gif" style="transform:rotate(320deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                                <image href="./public/game1/輪盤/light-02.gif" style="transform:rotate(340deg)" x="-7.5" y="-49"  height="15px" width="15px"/>
+                            </svg>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 題目 -->
+        <div data-role='page' id='page_ques'>
+            <div class="wrongAns"><img src="./public/game1/解答/wronganswer.jpg" alt=""></div>
+            <div class="container">
+                <div class="row title justify-content-center">
+                    <img src="./public/game1/答題頁/title.png" class='anstitle' alt="沒有圖片">
+                    <div class='timeImg'></div>
+                </div>
+                <div class="row justify-content-around">
+                    <p class='question'>
+                    </p>
+                </div>
+                <div class="row justify-content-around">
+                    <div class='card col' id='A' value='-1'>
+                        <div></div>
+                        <img src="./public/game1/答題頁/answer-A.png" alt="沒有圖片A">
+                    </div>
+                    <div class='card col' id='B' value='-1'>
+                        <div></div>
+                        <img src="./public/game1/答題頁/answer-B.png" alt="沒有圖片B">
+                    </div>
+                    <div class='card col' id='C' value='-1'>
+                        <div></div>
+                        <img src="./public/game1/答題頁/answer-C.png" alt="沒有圖片C">
+                    </div>
+                    <div class='card col' id='D' value='-1'>
+                        <div></div>
+                        <img src="./public/game1/答題頁/answer-D.png" alt="沒有圖片D">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 答案 -->
+        <div data-role="page" id='page_ans'>
+            <div class="container">
+                <div class="row align-items-end justify-content-around">
+                    <button id='playagain' value=''><img src="./public/game1/解答/btn-playagain.png" alt="沒有圖片"></button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer></footer>
+    
+    <!-- d3 -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+    <script src='http://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+
+    <!-- jquery.mobile -->
+    <script src='http://code.jquery.com/jquery-1.11.1.min.js'></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    
+    
+    <!-- jQuery.Keyframes -->
+    <script type="text/javascript" src='./public/js/jQuery.Keyframes-master/dist/jquery.keyframes.min.js'></script>
+    
+    <script type="text/javascript" src="public/js/game1.js"></script>
+</body></html>
