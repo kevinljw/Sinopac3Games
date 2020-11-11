@@ -171,48 +171,48 @@ function initiateGame() {
   });
 
   // 計時器按鈕 (因為#cntdown在initiate函式中才建立，所以onclick函式要放在initiate裡面)
-  $("#cntdown").on('click',function(){
-    // 按下cntdown按鈕之後才開始計時
-    stop_time = false;
+  // $("#cntdown").on('click',function(){
+  // 跳頁之後直接開始計時
+  stop_time = false;
+
+  // 讓可以置放的matching boxes(公司logo)在按下倒數計時之後才增加event(否則就是disabled)
+  droppableElements = document.querySelectorAll(".droppable"); //可以置放的(公司logo)
+  // 公司logo增加事件
+  droppableElements.forEach(elem => {
+    elem.addEventListener("dragenter", dragEnter);
+    elem.addEventListener("dragover", dragOver);
+    elem.addEventListener("dragleave", dragLeave);
+    elem.addEventListener("drop", drop);
+  });
   
-    // 讓可以置放的matching boxes(公司logo)在按下倒數計時之後才增加event(否則就是disabled)
-    droppableElements = document.querySelectorAll(".droppable"); //可以置放的(公司logo)
-    // 公司logo增加事件
-    droppableElements.forEach(elem => {
-      elem.addEventListener("dragenter", dragEnter);
-      elem.addEventListener("dragover", dragOver);
-      elem.addEventListener("dragleave", dragLeave);
-      elem.addEventListener("drop", drop);
-    });
-    
-    // 清空倒數計時器!! -> 若沒做，每次進函式都會一直跑之前的計時
-    clearInterval(setint);
-    // 設定倒數計時器
-    setint = setInterval( function(){
-      // 預設stop_time=true -> 直接return
-      if(stop_time){
-        return
-      }
-      // 時間到
-      if(sec==0){
-        stop_time = true; // 當倒數結束，stop_time=true
-        $('#cntdown').css('background-image',"url('./public/game3/素材/timesup.png')") //渲染時間到的圖片
-        $('.sec').hide(); // 隱藏秒數
-        $('.draggable').attr('disabled','disabled') // disabled拖拉的元素
-        
-        // 倒數時間到/答對/答錯時modal跳出
-        $('#window').css('background-image','url("./public/game3/素材/popup-fail.png")') // <p.s.>content:url('...') -> 用css去放img
-        $('#window').css('width','') // 客製化時間到時的寬度
-        $(".modal-footer").css('height','350px') // 客製化時間到時的playaagain的高度
-        $("#myModal").modal({backdrop:'static',keyboard:false}); // 避免點擊外部空白而消失modal(重要!!)
-        $('#myModal').modal('show');
-        
-        return
-      }
-      $('#cntdown').css('cursor','default'); // 倒數計時過程中，按鈕不能再點
-      $(".sec").text(`${pad(--sec%60)}`);    // 顯示秒數每秒被扣
-      }, 1000);
-  })
+  // 清空倒數計時器!! -> 若沒做，每次進函式都會一直跑之前的計時
+  clearInterval(setint);
+  // 設定倒數計時器
+  setint = setInterval( function(){
+    // 預設stop_time=true -> 直接return
+    if(stop_time){
+      return
+    }
+    // 時間到
+    if(sec==0){
+      stop_time = true; // 當倒數結束，stop_time=true
+      $('#cntdown').css('background-image',"url('./public/game3/素材/timesup.png')") //渲染時間到的圖片
+      $('.sec').hide(); // 隱藏秒數
+      $('.draggable').attr('disabled','disabled') // disabled拖拉的元素
+      
+      // 倒數時間到/答對/答錯時modal跳出
+      $('#window').css('background-image','url("./public/game3/素材/popup-fail.png")') // <p.s.>content:url('...') -> 用css去放img
+      $('#window').css('width','') // 客製化時間到時的寬度
+      $(".modal-footer").css('height','350px') // 客製化時間到時的playaagain的高度
+      $("#myModal").modal({backdrop:'static',keyboard:false}); // 避免點擊外部空白而消失modal(重要!!)
+      $('#myModal').modal('show');
+      
+      return
+    }
+    $('#cntdown').css('cursor','default'); // 倒數計時過程中，按鈕不能再點
+    $(".sec").text(`${pad(--sec%60)}`);    // 顯示秒數每秒被扣
+    }, 1000);
+  // })
 }
 
 // 每個公司品牌drop到每個公司logo所執行的函式
