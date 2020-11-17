@@ -51,7 +51,7 @@ var	total = 0,         // 總翻對的數量
 	count = 1,         // 每回合翻開的數量(最多兩張)
 	first_card = null, // 每回合翻開的第一張牌
 	secn_card = null,  // 每回合翻開的第二張牌
-	sec = 30;          // 倒數時間
+	sec = 60;          // 倒數時間
 	
 var stop_fa = false , // 可否auto翻牌，一開始設定false，自動隨機翻牌
 	stop_fc = true,   // 可否手動翻牌，一開始設定true，還沒按start之前都不能手動翻牌
@@ -267,7 +267,7 @@ function flip_auto(time){
 
 //初始化(重設遊戲)
 function reset(){
-	sec = 30;                      //初始化倒數時間
+	sec = 60;                      //初始化倒數時間
 	$('.sec').text(`${pad(sec)}`); // 重新渲染秒數
 	$('.sec').hide();              // 秒數隱藏
 	$('.card').removeClass('cfliped'); // 全部牌蓋回去

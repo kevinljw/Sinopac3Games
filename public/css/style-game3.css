@@ -55,18 +55,18 @@ body::-webkit-scrollbar {
 
 /* 公司品牌第一列 */
 #drag-1st{
-  width:800px;
+  width:400px;
   /* 置中->上下0,左右auto */
-  margin:12px auto;
+  margin:40px auto;
   display: flex;
   flex-wrap: wrap;
 }
 
 /* 公司品牌第二列 */
 #drag-2nd{
-  width:700px;
-  /* 置中->上下0,左右auto */
-  margin:60px auto;
+  width:400px;
+  /* 置中->離底部80px,左右auto */
+  margin-bottom:60px;
 }
 
 /* 倒數計時 */
@@ -166,7 +166,7 @@ body::-webkit-scrollbar {
   transition: opacity 0.5s;
 }
 .matching-pair {
-  height: 6rem;
+  height: 10rem;
   /* width: 22rem; */
   margin: 1rem 1rem;
   /* display: flex; */
@@ -175,7 +175,7 @@ body::-webkit-scrollbar {
   display: inline-flex;
 }
 .matching-pair span {
-  height: 100%;
+  /* height: 100%; */
   /* display: flex; */
   justify-content: center;
   align-items: center;
@@ -187,7 +187,7 @@ body::-webkit-scrollbar {
   font-size: 2rem;
 }
 .droppable {
-  width: 6rem;
+  width: 10rem;
   font-size: 4rem;
   background-color: transparent;
   /* border: 3px dashed #111; */

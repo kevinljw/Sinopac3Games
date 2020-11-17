@@ -1,17 +1,17 @@
 // 定義品牌陣列
 const brands = [
-  {
-    iconName:'amazon.png',
-    brandName: 'amazon',
-  },
-  {
-    iconName:'apple.png',
-    brandName: 'apple',
-  },
-  {
-    iconName:'costco.png',
-    brandName: 'costco',
-  },
+  // {
+  //   iconName:'amazon.png',
+  //   brandName: 'amazon',
+  // },
+  // {
+  //   iconName:'apple.png',
+  //   brandName: 'apple',
+  // },
+  // {
+  //   iconName:'costco.png',
+  //   brandName: 'costco',
+  // },
   {
     iconName:'disney.png',
     brandName: 'disney',
@@ -67,7 +67,7 @@ let correct = 0; // 答對的數量
 let total = 0;   // 總共嘗試的數量
 var setint;      //初始化計時器，否則一開始clearInterval(setInt)會出現setInt沒有定義
 const totalDraggableItems = 9; // 公司品牌數量
-const totalMatchingPairs = 9; // 公司logo數量，Should be <= totalDraggableItems
+const totalMatchingPairs = 6; // 公司logo數量，Should be <= totalDraggableItems
 
 // 十進位函式
 function pad ( val ) { return val > 9 ? val : "0" + val; }
@@ -75,7 +75,8 @@ function pad ( val ) { return val > 9 ? val : "0" + val; }
 // 初始化遊戲
 function initiateGame() {
   //設定倒數時間
-  sec = 45;
+  sec = 60;
+  $('#count').html(`<button class="fab fa-time.png ui-btn ui-shadow ui-corner-all" id="cntdown"><div class='sec'>${sec}</div></button>`);
   
   // 數量歸零
   correct = 0;
@@ -128,12 +129,12 @@ function initiateGame() {
 
   // 把公司品牌排上去html
   // Create "draggable-items" and append to DOM 
-  for(let i=0; i<4; i++){
-    // 計時器
-    if(i==2){
-      draggableItems1.insertAdjacentHTML("beforeend",
-      `<button class="fab fa-time.png ui-btn ui-shadow ui-corner-all" id="cntdown"><div class='sec'>${sec}</div></button>`);
-    }
+  for(let i=0; i<3; i++){
+    // 計時器 -> 移到html那邊加入
+    // if(i==2){
+    //   draggableItems1.insertAdjacentHTML("beforeend",
+    //   `<button class="fab fa-time.png ui-btn ui-shadow ui-corner-all" id="cntdown"><div class='sec'>${sec}</div></button>`);
+    // }
     // 排第一列公司品牌
     draggableItems1.insertAdjacentHTML("beforeend", `
       <i class="fab fa-${randomDraggableBrands[i].iconName} draggable" draggable="true">
@@ -141,7 +142,7 @@ function initiateGame() {
       </i>`);
   }
   // 排第二列公司品牌
-  for(let i=4; i<9; i++){
+  for(let i=3; i<6; i++){
     draggableItems2.insertAdjacentHTML("beforeend", `
       <i class="fab fa-${randomDraggableBrands[i].iconName} draggable" draggable="true" id="${randomDraggableBrands[i].iconName}">
         <img class="icon" src='./public/game3/公司名稱/${randomDraggableBrands[i].iconName}' id="${randomDraggableBrands[i].iconName}"></img>
@@ -150,7 +151,7 @@ function initiateGame() {
 
   // 把公司logo排上去html
   // Create "matching-pairs" and append to DOM
-  for(i=0; i<3; i++){
+  for(i=0; i<2; i++){
     for(j=0; j<3; j++){
       matchingPairs.insertAdjacentHTML("beforeend", `
       <div class="matching-pair">
@@ -202,8 +203,12 @@ function initiateGame() {
       
       // 倒數時間到/答對/答錯時modal跳出
       $('#window').css('background-image','url("./public/game3/素材/popup-fail.png")') // <p.s.>content:url('...') -> 用css去放img
-      $('#window').css('width','') // 客製化時間到時的寬度
-      $(".modal-footer").css('height','350px') // 客製化時間到時的playaagain的高度
+
+      $('#window').css('width','700px') // 客製化答對時的寬度
+      $(".modal-footer").css('height','250px') // 客製化時間到時的playaagain的高度
+
+      // $('#window').css('width','') // 客製化時間到時的寬度
+      // $(".modal-footer").css('height','350px') // 客製化時間到時的playaagain的高度
       $("#myModal").modal({backdrop:'static',keyboard:false}); // 避免點擊外部空白而消失modal(重要!!)
       $('#myModal').modal('show');
       

@@ -3,7 +3,7 @@ path = 'public/game1/輪盤/'
 
 // question.csv放在github上
 // question.csv -> [quesId,title,quesDescrip,A,B,C,D,ans,ansDescrip]
-file = 'https://gist.githubusercontent.com/DysonMa/89f6d8f53ad84df07a963f8333857f39/raw/2c4fbcdee8486849599138c20c899a02fc3f49f3/question.csv'
+file = 'https://gist.githubusercontent.com/DysonMa/89f6d8f53ad84df07a963f8333857f39/raw/6570c329f4d060aa4e2a8d37207a4a8cf9fe5a53/question.csv'
 
 // 用D3載入問題敘述的csv
 ques_list = []
@@ -39,7 +39,7 @@ $(document).ready(function() {
 // 初始化參數
 var iEnd = -1;      // 假設iEnd是請求獲得的獎品結果
 stop_time = false;  // 
-sec = 30;           // 設定倒數時間30秒
+sec = 60;           // 設定倒數時間60秒
 var setint;         // 設定倒數計時器
 
 // 轉盤按鈕
@@ -80,7 +80,7 @@ $(".turntable_btn").on("click", function(){
     Q_dict = ques_list[iEnd]          // 從question.csv中撈出隨機選中的那一題
 
     // 把問題敘述渲染到page_ques的頁面上，ex: Q5: 題目敘述...
-    $('.question').text(`Q${Q_dict['quesId']}: `+Q_dict['quesDescrip']);
+    $('.question').text(Q_dict['quesDescrip']);
     
     // 設定選項的value
     option = ['A','B','C','D'];
@@ -92,7 +92,7 @@ $(".turntable_btn").on("click", function(){
     }
   
     // 跳轉頁面
-    sec = 30;           // 設定倒數時間30秒
+    sec = 60;           // 設定倒數時間60秒
     stop_time = false;  // 不要停止計時
     $('.title .timeImg').html(`<div class='sec'>${sec}</div>`);  // 顯示秒數
     $.mobile.changePage(`#page_ques`,{allowSamePageTransition:true,transition:"slidedown"}) // 跳頁跳到問題頁
@@ -122,6 +122,12 @@ function pad ( val ) { return val > 9 ? val : "0" + val; }
 
 // 點擊卡片
 $(".card").on("click",function(){
+
+  // 如果被標記成不能點就直接return
+  if($(this).attr("clickable")=="no"){
+    return
+  }
+
   ans = $(this).attr('value'); // 答對哪一題，或是-1(代表答錯)
 
   // 答對 Correct
@@ -136,6 +142,11 @@ $(".card").on("click",function(){
   else{
     $('#page_ques .wrongAns').fadeIn();
     $('#page_ques .container').hide();
+
+    $(this).find('.wrong_ans').show(); // 顯示(蓋上)答錯的圖片
+    $(this).css('cursor','default');  // 不能有手指的cursor
+    $(this).attr("clickable","no");    // 讓他不能再點
+
     // 設定兩秒後，答錯頁面fadeout，題目敘述跟卡片fadein回來
     setTimeout(function(){
       $('#page_ques .wrongAns').fadeOut();
@@ -150,6 +161,10 @@ function reset(){
   $('.turntable_btn').css('transform','translate(-50%,-50%) rotate(0deg)');            // 指針回到原點
   $(".turntable_btn").resetKeyframe();   // 重設轉盤動畫
   $('.title .timeImg').css('background-image',"url('./public/game2/img/time.png')")    // 倒數計時圖片
+
+  $(".card").find('.wrong_ans').hide(); // .card 隱藏(揭開)答錯的圖片
+  $(".card").css('cursor','pointer');  // .card有手指的cursor
+  $(".card").attr("clickable","yes");    // 讓.card可以再點
 }
 
 // 再挑戰一次按鈕
@@ -163,3 +178,4 @@ $('#playagain img').on('click',function(){
 // var audio = new Audio('./public/game1/輪盤遊戲.mp3');
 // audio.muted = true;
 // audio.play();
+

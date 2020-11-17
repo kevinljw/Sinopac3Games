@@ -14,6 +14,17 @@ body {
 	overflow: hidden;
 }
 
+.container {
+	max-width: 1350px;
+	min-width: 400px;
+	margin: 0 auto;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	height: 100vh;
+	/* vertical-align: middle; */
+  }
+
 /* 隱藏卷軸 */
 body::-webkit-scrollbar {
 	display: none;
@@ -55,8 +66,8 @@ body::-webkit-scrollbar {
 
 
 div.title{
-	padding: 20px;
-	margin: 20px;
+	/* padding: 20px; */
+	/* margin: 20px; */
 }
 
 /* 設定背景顏色 */
@@ -68,27 +79,32 @@ div.title{
 }
 
 
-div.title img{
+div.title1 img{
 	width: 50%;
-	margin-left: 100px;
+	margin-left: 35%;
 }
 
-#ans{
-	width: 100%;
-} 
+div.title2 img{
+	width: 80%;
+	margin-left: 20%;
+}
+
 
 #playagain{
 	cursor: default;
 	border:0;
+	height: 100px;
 	background: transparent;
 	box-shadow: none;
 }
 
 #playagain img{
 	cursor: pointer;
-	width:30%;
-	float: right;
+	/* width:30%; */
+	height: 110%;
+	/* float: right; */
 	position: relative;
+	object-fit: cover;
 }
 
 
