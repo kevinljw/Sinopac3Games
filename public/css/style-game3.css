@@ -66,7 +66,7 @@ body::-webkit-scrollbar {
 #drag-2nd{
   width:400px;
   /* 置中->離底部80px,左右auto */
-  margin-bottom:60px;
+  margin-bottom:40px;
 }
 
 /* 倒數計時 */
@@ -246,6 +246,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 5px;
 }
 
 /* 開始頁的title */
@@ -259,8 +260,8 @@ body::-webkit-scrollbar {
 /* 開始頁的title圖片 */
 #titleImg{
   width: 100%;
-  padding: 30px;
-  margin: 60px;
+  /* padding: 30px; */
+  margin: 40px;
 }
 
 /* 開始頁的開始按鈕 */

@@ -37,6 +37,10 @@
 <body>
     <header>Sinopac Game #1</header>
     <main>
+        <!-- 按鈕音效 -->
+        <audio id='click_music'  autoplay="false">
+            <source src="./public/game1/click.mp3" type="audio/mpeg">    
+        </audio>
         <!-- 轉盤頁 -->
         <div data-role='page' id='page1'>
             <div class="container" id="indexContainer">
@@ -54,7 +58,7 @@
                             <div class="list">
                                 <ul></ul>
                             </div>
-                            <button class="turntable_btn">
+                            <button class="turntable_btn" >
                             </button>
                             <img id='roulette' src="./public/game1/輪盤/roulette-bottom.png" alt=""></img>
                             <svg style="z-index:-1" viewbox="-50 -50 100 100" version="1.1">

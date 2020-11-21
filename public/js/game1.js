@@ -57,7 +57,7 @@ $(".turntable_btn").on("click", function(){
   $.keyframe.define([{
     name: 'go',
     '0%': {'transform': 'translate(-50%,-50%) rotate(0deg)'},
-    '100%': {'transform': 'translate(-50%,-50%) rotate('+(3600+iEnd*45)+'deg)'}  // 都先轉10圈，最後一圈才決定要轉幾度(depend on 第幾題) 
+    '100%': {'transform': 'translate(-50%,-50%) rotate('+(1440+iEnd*45)+'deg)'}  // 都先轉10圈，最後一圈才決定要轉幾度(depend on 第幾題) 
   }]);
 
   // go動畫
@@ -173,9 +173,22 @@ $('#playagain img').on('click',function(){
   reset(); // 重設遊戲
 })
 
-// $('#myAudio').attr("muted",true)
-// $('#myAudio').trigger('play')
-// var audio = new Audio('./public/game1/輪盤遊戲.mp3');
-// audio.muted = true;
-// audio.play();
-
+// 按鈕音效
+function playSoundEffect(){
+  var playSoundCorrect = new Audio("./public/game1/click.mp3");
+  playSoundCorrect.play();
+}
+$(function(){
+  // 按下輪盤開始按鈕
+  $(".turntable_btn").on("click",function(){
+      playSoundEffect();
+  })
+  // 按下卡牌
+  $(".card[clickable = 'yes']").on("click",function(){
+    playSoundEffect();
+  })
+  // 按下再玩一次的按鈕
+  $("#playagain").on("click",function(){
+    playSoundEffect();
+  })
+});

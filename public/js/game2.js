@@ -291,3 +291,23 @@ $('#playagain img').on('click',function(){
 	reset(); // 重設遊戲
 	$.mobile.changePage('#page1',{allowSamePageTransition:true,transition:"slidedown"}); // 跳頁
 })
+
+// 按鈕音效
+function playSoundEffect(){
+	var playSoundCorrect = new Audio("./public/game2/click.mp3");
+	playSoundCorrect.play();
+  }
+  $(function(){
+	// 按下開始按鈕
+	$(".face").on("click",function(){
+		playSoundEffect();
+	})
+	// 按下卡牌
+	$(".back.face").on("click",function(){
+	  playSoundEffect();
+	})
+	// 按下再玩一次的按鈕
+	$("#playagain").on("click",function(){
+	  playSoundEffect();
+	})
+  });

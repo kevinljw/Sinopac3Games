@@ -85,6 +85,10 @@ function initiateGame() {
   // 一開始設為true,才不會一進到initiate函式就開始計時
   stop_time = true
 
+  // 平板
+  var board;
+
+
   // Drag and Drop Functions
   // Events fired on the drag target
   // 被拖曳的物件(公司品牌)觸發
@@ -138,14 +142,17 @@ function initiateGame() {
     // 排第一列公司品牌
     draggableItems1.insertAdjacentHTML("beforeend", `
       <i class="fab fa-${randomDraggableBrands[i].iconName} draggable" draggable="true">
-        <img class="icon" src='./public/game3/公司名稱/${randomDraggableBrands[i].iconName}' id="${randomDraggableBrands[i].iconName}"></img>
+        <img class="icon" src='./public/game3/公司名稱/${randomDraggableBrands[i].iconName}' id="${randomDraggableBrands[i].iconName}" ontouchstart="pickup(event)" ontouchmove="move(event)" ontouchend="drop(event)"></img>
       </i>`);
   }
+
+  // ontouchstart="pickup(event)" ontouchmove="move(event)" ontouchend="dropp(event)"
+
   // 排第二列公司品牌
   for(let i=3; i<6; i++){
     draggableItems2.insertAdjacentHTML("beforeend", `
-      <i class="fab fa-${randomDraggableBrands[i].iconName} draggable" draggable="true" id="${randomDraggableBrands[i].iconName}">
-        <img class="icon" src='./public/game3/公司名稱/${randomDraggableBrands[i].iconName}' id="${randomDraggableBrands[i].iconName}"></img>
+      <i class="fab fa-${randomDraggableBrands[i].iconName} draggable" draggable="true" id="${randomDraggableBrands[i].iconName}" >
+        <img class="icon" src='./public/game3/公司名稱/${randomDraggableBrands[i].iconName}' id="${randomDraggableBrands[i].iconName}" ontouchstart="pickup(event)" ontouchmove="move(event)" ontouchend="drop(event)"></img>
       </i>`);
   }
 
@@ -155,18 +162,23 @@ function initiateGame() {
     for(j=0; j<3; j++){
       matchingPairs.insertAdjacentHTML("beforeend", `
       <div class="matching-pair">
-        <span class="droppable" data-brand="${randomDroppableBrands[i*3+j].iconName}" style="background-image:url('./public/game3/公司logo/${randomDroppableBrands[i*3+j].iconName}')">
+        <span class="droppable" data-brand="${randomDroppableBrands[i*3+j].iconName}" style="background-image:url('./public/game3/公司logo/${randomDroppableBrands[i*3+j].iconName}')" ontouchend="drop(event)">
         </span>
       </div>`);
     }
     matchingPairs.insertAdjacentHTML("beforeend",'<br>');
   }
 
+  
+
+
+
   //此時才能用document去query，因為剛剛才建立好這些物件
   const draggableElements = document.querySelectorAll(".draggable"); // 可以拖拉的物件(所有的公司品牌)
   // 所有拖拉物件(公司品牌)加上dragstart事件
   draggableElements.forEach(elem => {
     elem.addEventListener("dragstart", dragStart);
+    // elem.addEventListener("touchstart", touchHandler, true)
     // elem.addEventListener("drag", drag);
     // elem.addEventListener("dragend", dragEnd);
   });
@@ -223,9 +235,26 @@ function initiateGame() {
 // 每個公司品牌drop到每個公司logo所執行的函式
 function drop(event) {
   event.preventDefault();
-  event.target.classList.remove("droppable-hover");
-  const draggableElementBrand = event.dataTransfer.getData("text");  // 用text接收drag夾帶的id
-  const droppableElementBrand = event.target.getAttribute("data-brand"); 
+
+  // 電腦
+  if(event.type=="drop"){
+    event.target.classList.remove("droppable-hover");
+    var draggableElementBrand = event.dataTransfer.getData("text");  // 用text接收drag夾帶的id
+    var droppableElementBrand = event.target.getAttribute("data-brand"); 
+  }
+  // 觸控板
+  else if(event.type=="touchend"){
+    $(".droppable-hover").removeClass("droppable-hover")  // 每次移動都把有包含hover這個動畫的元素的class去除
+    event.target.style.zIndex = '-10';  // 先藏下去，因為elementFromPoint是找最上層
+    var draggableElementBrand = event.target.id;  // pickup選取的icon
+    var drop_element = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY) // elementFromPoint從位置抓元素(drop位置最上方的元素)
+    if(drop_element!=undefined){
+      var droppableElementBrand = drop_element.getAttribute("data-brand"); 
+    }
+    
+    event.target.style.zIndex = '1'; // 再放上層，不然會看不見
+  }
+
   const isCorrectMatching = draggableElementBrand===droppableElementBrand; // 判斷drop/drag是否是同樣的公司
 
   total++; // 總嘗試數量+1
@@ -240,6 +269,14 @@ function drop(event) {
     // 改變matching pairs(公司logo)的背景圖片為股價
     $(`span[data-brand = "${droppableElementBrand}"]`).css('background-image',`url('./public/game3/公司股價/${droppableElementBrand}')`);
 
+    // 答對的icon去掉touch的觸發
+    if(event.type=='touchend'){
+      draggableElement.removeAttribute("ontouchstart")
+      draggableElement.removeAttribute("ontouchmove")
+      draggableElement.removeAttribute("ontouchend")
+    }
+
+    playSoundEffect(); // 答對播放音效
     correct++;  // 答對數+1
   }
   // drop錯
@@ -262,6 +299,20 @@ function drop(event) {
     $("#myModal").modal({backdrop:'static',keyboard:false}); // 避免點擊外部空白而消失modal(重要!!)
     $('#myModal').modal('show')
   }
+
+  // 重設回原訂位置
+  if (moving) {
+      // reset our element
+      moving.style.left = '';
+      moving.style.top = '';
+      moving.style.height = '';
+      moving.style.width = '';
+      moving.style.position = '';
+
+      // moving = null;
+      event.preventDefault()
+  }
+
 }
 
 // 隨機sample出n個數量的陣列
@@ -291,3 +342,57 @@ $("#playagain").on('click',function () {
   $.mobile.changePage('#page1',{allowSamePageTransition:true,transition:"slide"}); // 跳轉頁面
   // $('.modal-backdrop').removeClass('modal-backdrop') //移除backdrop的遮罩
 });
+
+let moving = null;
+
+// 觸碰板觸碰
+function pickup(event) {
+  moving = event.target;
+
+  moving.style.height = moving.clientHeight;
+  moving.style.width = moving.clientWidth;
+  moving.style.position = 'absolute';
+}
+
+// 觸碰板移動
+function move(event) {
+  event.preventDefault()
+  if (moving) {
+    // touchmove - assuming a single touchpoint
+    moving.style.left = event.changedTouches[0].clientX - moving.clientWidth/2 + "px"; // 找出位置
+    moving.style.top = event.changedTouches[0].clientY + moving.clientWidth/2 + "px";  // 找出位置
+    // drop的物件加上droppable-hover這個class才能觸發hover的動畫
+    event.target.style.zIndex = '-10'; // 先藏下去
+    var drag_element = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY) // elementFromPoint從位置抓元素(每次移動位置最上方的元素)
+    event.target.style.zIndex = '1';   // 再浮上來
+    $(".droppable-hover").removeClass("droppable-hover")  // 每次移動都把有包含hover這個動畫的元素的class去除
+    if(drag_element!=undefined && drag_element.className == "droppable"){
+      drag_element.classList.add("droppable-hover");  // 當最上方的元素是droppable的就增加droppable-hover這個class
+    }
+    event.preventDefault();
+  }
+}
+
+// 按鈕音效
+function playSoundEffect(){
+	var playSoundCorrect = new Audio("./public/game3/click.mp3");
+	playSoundCorrect.play();
+  }
+  $(function(){
+	// 按下開始按鈕
+	$("#startImg").on("click",function(){
+		playSoundEffect();
+	})
+	// // 觸碰icon
+	// $(".icon").on("click",function(){
+	//   playSoundEffect();
+  // })
+  // // drop icon
+	// $(".icon").on("touchend",function(){
+	//   playSoundEffect();
+	// })
+	// 按下再玩一次的按鈕
+	$("#playagain").on("click",function(){
+	  playSoundEffect();
+	})
+  });
