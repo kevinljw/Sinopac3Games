@@ -85,10 +85,6 @@ function initiateGame() {
   // 一開始設為true,才不會一進到initiate函式就開始計時
   stop_time = true
 
-  // 平板
-  var board;
-
-
   // Drag and Drop Functions
   // Events fired on the drag target
   // 被拖曳的物件(公司品牌)觸發
@@ -151,7 +147,7 @@ function initiateGame() {
   // 排第二列公司品牌
   for(let i=3; i<6; i++){
     draggableItems2.insertAdjacentHTML("beforeend", `
-      <i class="fab fa-${randomDraggableBrands[i].iconName} draggable" draggable="true" id="${randomDraggableBrands[i].iconName}" >
+      <i class="fab fa-${randomDraggableBrands[i].iconName} draggable" draggable="true">
         <img class="icon" src='./public/game3/公司名稱/${randomDraggableBrands[i].iconName}' id="${randomDraggableBrands[i].iconName}" ontouchstart="pickup(event)" ontouchmove="move(event)" ontouchend="drop(event)"></img>
       </i>`);
   }
@@ -169,16 +165,11 @@ function initiateGame() {
     matchingPairs.insertAdjacentHTML("beforeend",'<br>');
   }
 
-  
-
-
-
   //此時才能用document去query，因為剛剛才建立好這些物件
   const draggableElements = document.querySelectorAll(".draggable"); // 可以拖拉的物件(所有的公司品牌)
   // 所有拖拉物件(公司品牌)加上dragstart事件
   draggableElements.forEach(elem => {
     elem.addEventListener("dragstart", dragStart);
-    // elem.addEventListener("touchstart", touchHandler, true)
     // elem.addEventListener("drag", drag);
     // elem.addEventListener("dragend", dragEnd);
   });
@@ -216,8 +207,8 @@ function initiateGame() {
       // 倒數時間到/答對/答錯時modal跳出
       $('#window').css('background-image','url("./public/game3/素材/popup-fail.png")') // <p.s.>content:url('...') -> 用css去放img
 
-      $('#window').css('width','700px') // 客製化答對時的寬度
-      $(".modal-footer").css('height','250px') // 客製化時間到時的playaagain的高度
+      $('#window').css('width','500px') // 客製化答對時的寬度
+      $(".modal-footer").css('height','150px') // 客製化時間到時的playagain的高度
 
       // $('#window').css('width','') // 客製化時間到時的寬度
       // $(".modal-footer").css('height','350px') // 客製化時間到時的playaagain的高度
@@ -281,6 +272,20 @@ function drop(event) {
   }
   // drop錯
   else{
+      // 重設回原訂位置
+      if (moving) {
+        // reset our element
+        moving.style.left = '';
+        moving.style.top = '';
+        moving.style.height = '';
+        moving.style.width = '';
+        moving.style.position = '';
+
+        // moving = null;
+        event.preventDefault()
+    }
+
+
     // 增加一個class='animated'去做shake動畫的css
     $(`span[data-brand = "${droppableElementBrand}"]`).addClass('animated');
     // 並設定1秒後移除該animated class,否則就無法再觸發,因為已經加上animated的class
@@ -291,8 +296,8 @@ function drop(event) {
   // 全部答對
   if(correct===Math.min(totalMatchingPairs, totalDraggableItems)) { // Game Over!!
     $('#window').css('background-image','url("./public/game3/素材/popup-true.png")') // 放上恭喜挑戰成功的圖片
-    $('#window').css('width','700px') // 客製化答對時的寬度
-    $(".modal-footer").css('height','250px') // 客製化時間到時的playaagain的高度
+    $('#window').css('width','500px') // 客製化答對時的寬度
+    $(".modal-footer").css('height','150px') // 客製化時間到時的playaagain的高度
     stop_time = true; // 設定時間到當作遊戲結束(避免倒數計時器一直走)
 
     // 跳出modal
@@ -300,18 +305,7 @@ function drop(event) {
     $('#myModal').modal('show')
   }
 
-  // 重設回原訂位置
-  if (moving) {
-      // reset our element
-      moving.style.left = '';
-      moving.style.top = '';
-      moving.style.height = '';
-      moving.style.width = '';
-      moving.style.position = '';
-
-      // moving = null;
-      event.preventDefault()
-  }
+  
 
 }
 
@@ -351,8 +345,12 @@ function pickup(event) {
 
   moving.style.height = moving.clientHeight;
   moving.style.width = moving.clientWidth;
-  moving.style.position = 'absolute';
-}
+  moving.style.position = 'fixed';
+  
+  // var touch = event.touches[0] || event.changedTouches[0];
+  moving.style.left = event.changedTouches[0].clientX - moving.clientWidth/2 + "px"
+  moving.style.top = event.changedTouches[0].clientY - moving.clientHeight/2 + "px";
+} 
 
 // 觸碰板移動
 function move(event) {
@@ -360,7 +358,7 @@ function move(event) {
   if (moving) {
     // touchmove - assuming a single touchpoint
     moving.style.left = event.changedTouches[0].clientX - moving.clientWidth/2 + "px"; // 找出位置
-    moving.style.top = event.changedTouches[0].clientY + moving.clientWidth/2 + "px";  // 找出位置
+    moving.style.top = event.changedTouches[0].clientY - moving.clientHeight/2 + "px";  // 找出位置
     // drop的物件加上droppable-hover這個class才能觸發hover的動畫
     event.target.style.zIndex = '-10'; // 先藏下去
     var drag_element = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY) // elementFromPoint從位置抓元素(每次移動位置最上方的元素)

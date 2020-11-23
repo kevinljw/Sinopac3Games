@@ -3,7 +3,7 @@ path = 'public/game1/輪盤/'
 
 // question.csv放在github上
 // question.csv -> [quesId,title,quesDescrip,A,B,C,D,ans,ansDescrip]
-file = 'https://gist.githubusercontent.com/DysonMa/89f6d8f53ad84df07a963f8333857f39/raw/6570c329f4d060aa4e2a8d37207a4a8cf9fe5a53/question.csv'
+file = 'https://gist.githubusercontent.com/DysonMa/89f6d8f53ad84df07a963f8333857f39/raw/8067a74d4cedfe62e57cfea7a4b6a0b52890a43d/question.csv'
 
 // 用D3載入問題敘述的csv
 ques_list = []
@@ -57,7 +57,7 @@ $(".turntable_btn").on("click", function(){
   $.keyframe.define([{
     name: 'go',
     '0%': {'transform': 'translate(-50%,-50%) rotate(0deg)'},
-    '100%': {'transform': 'translate(-50%,-50%) rotate('+(1440+iEnd*45)+'deg)'}  // 都先轉10圈，最後一圈才決定要轉幾度(depend on 第幾題) 
+    '100%': {'transform': 'translate(-50%,-50%) rotate('+(1080+iEnd*45)+'deg)'}  // 都先轉10圈，最後一圈才決定要轉幾度(depend on 第幾題) 
   }]);
 
   // go動畫

@@ -93,8 +93,8 @@ body::-webkit-scrollbar {
   /* position: absolute;
   top: 150px;
   left */
-  margin:25% auto;
-  height: 1360px;
+  margin:10% auto;
+  height: 980px;
   background-size: cover;
   background-position: center;
   justify-content: center;
@@ -119,6 +119,7 @@ body::-webkit-scrollbar {
 /* modal */
 .modal-footer{
   border:none;
+  margin-bottom: 30px;
   /* height:js客製化; */
 }
 
