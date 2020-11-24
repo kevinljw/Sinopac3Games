@@ -158,7 +158,7 @@ function initiateGame() {
     for(j=0; j<3; j++){
       matchingPairs.insertAdjacentHTML("beforeend", `
       <div class="matching-pair">
-        <span class="droppable" data-brand="${randomDroppableBrands[i*3+j].iconName}" style="background-image:url('./public/game3/公司logo/${randomDroppableBrands[i*3+j].iconName}')" ontouchend="drop(event)">
+        <span class="droppable" data-brand="${randomDroppableBrands[i*3+j].iconName}" style="background-image:url('./public/game3/公司logo/${randomDroppableBrands[i*3+j].iconName}'); z-index=1" ontouchend="drop(event)">
         </span>
       </div>`);
     }
@@ -362,7 +362,7 @@ function move(event) {
     // drop的物件加上droppable-hover這個class才能觸發hover的動畫
     event.target.style.zIndex = '-10'; // 先藏下去
     var drag_element = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY) // elementFromPoint從位置抓元素(每次移動位置最上方的元素)
-    event.target.style.zIndex = '1';   // 再浮上來
+    event.target.style.zIndex = '10';   // 再浮上來
     $(".droppable-hover").removeClass("droppable-hover")  // 每次移動都把有包含hover這個動畫的元素的class去除
     if(drag_element!=undefined && drag_element.className == "droppable"){
       drag_element.classList.add("droppable-hover");  // 當最上方的元素是droppable的就增加droppable-hover這個class

@@ -160,9 +160,10 @@ body::-webkit-scrollbar {
   opacity: 1;
 }
 
-.draggable:hover {
+/* 觸碰板會有久按的問題 */
+/* .draggable:hover {
   opacity: 0.5;
-}
+} */
 .matching-pairs {
   transition: opacity 0.5s;
 }

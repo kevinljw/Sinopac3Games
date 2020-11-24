@@ -64,7 +64,7 @@ $(".turntable_btn").on("click", function(){
   $('.turntable_btn.go').playKeyframe(
     {
     name: 'go',
-    duration: "7s",             // 動畫執行時間
+    duration: "3.5s",           // 動畫執行時間
     timingFunction: 'ease-out', // 快到慢
     iterationCount: '1',        // 只執行一次動畫
   });
@@ -114,7 +114,7 @@ $(".turntable_btn").on("click", function(){
       }
         $(".sec").text(`${pad(--sec%60)}`);  // 顯示秒數每秒被扣一
       }, 1000);
-  }, 8000);
+  }, 4000);
 });
 
 // 十進位函式
