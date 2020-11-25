@@ -162,7 +162,7 @@ function initiateGame() {
     for(j=0; j<3; j++){
       matchingPairs.insertAdjacentHTML("beforeend", `
       <div class="matching-pair">
-        <span class="droppable" data-brand="${randomDroppableBrands[i*3+j].iconName}" style="background-image:url('./public/game3/公司logo/${randomDroppableBrands[i*3+j].iconName}'); z-index=1" ontouchend="drop(event)">
+        <span class="droppable" data-brand="${randomDroppableBrands[i*3+j].iconName}" style="background-image:url('./public/game3/公司logo/${randomDroppableBrands[i*3+j].iconName}'); z-index:1" ontouchend="drop(event)">
         </span>
       </div>`);
     }
@@ -263,6 +263,7 @@ function drop(event) {
     event.target.innerHTML = `<i class="fab fa-${draggableElementBrand}" style="color: ${draggableElement.style.color};"></i>`;
     // 改變matching pairs(公司logo)的背景圖片為股價
     $(`span[data-brand = "${droppableElementBrand}"]`).css('background-image',`url('./public/game3/公司股價/${droppableElementBrand}')`);
+    $(`span[data-brand = "${droppableElementBrand}"]`).addClass('no-droppable')
 
     // 答對的icon去掉touch的觸發
     if(event.type=='touchend'){

@@ -16,9 +16,17 @@ file = './public/question.csv'
  });
 
 
+
 // 避免跳頁過程出意外
-// function escape_error(){
-// 	if($('.question').text()==""){
+function escape_error(){
+	if(($('.question').text()=="")||($(`.card > div`).html()=="")){
+		reset();
+  }
+}
+
+// 避免跳頁到答案頁的過程出意外
+// function escape_error_toAns(){
+// 	if($('#page_ans').css('background-image')=='none'){
 // 		reset();
 //   }
 // }
@@ -113,7 +121,7 @@ $(".turntable_btn").on("click", function(){
     stop_time = false;  // 不要停止計時
     $('.title .timeImg').html(`<div class='sec'>${sec}</div>`);  // 顯示秒數
     $.mobile.changePage(`#page_ques`,{allowSamePageTransition:true,transition:"slidedown"}) // 跳頁跳到問題頁
-    // escape_error()
+    escape_error()
     clearInterval(setint); // 清空倒數計時器，否則會一直倒數
     // 設定倒數計時器
     setint = setInterval( function(){
