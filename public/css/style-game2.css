@@ -72,8 +72,8 @@ div.title{
 
 /* 設定背景顏色 */
 .ui-page { 
-	background-color: #333333;
-	background-image: url('../game2/img/bg.jpg');
+	background-color: #000;
+	/* background-image: url('../game2/img/bg.jpg'); */
 	background-repeat: no-repeat;
 	background-size: cover;
 }

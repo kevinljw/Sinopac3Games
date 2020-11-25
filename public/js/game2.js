@@ -19,27 +19,32 @@ function shuffle(){
 // 十進位函式
 function pad ( val ) { return val > 9 ? val : "0" + val; }
 
-// 網頁讀取的時候禁止動作
-$(document).ready(function(){
+// 禁止進行任何動作
+$(document).ready(function() {  
+
 	// 禁止按右鍵
 	$(document).get(0).oncontextmenu = function() {
 		return false;
 	};
-	// 禁止按ctrl/alt/shift
+	// 禁止按ctrl/alt/shift/F5重新整理
 	$(document).get(0).onkeydown = function(){
-	  if ( event.ctrlKey ){
-		  return false;
-	  }
-	  if ( event.altKey ){
-		  return false;
-	  }
-	  if ( event.shiftKey ){
-		  return false;
-	  }
+		if ( event.ctrlKey ){
+			return false;
+		}
+		if ( event.altKey ){
+			return false;
+		}
+		if ( event.shiftKey ){
+			return false;
+		}
+		// F5重新整理
+		if (event.keyCode==116){ 
+			return false;
+		}
 	}
 	// 禁止在網頁選取
 	$(document).get(0).onselectstart = function(){
-	  return false;
+		return false;
 	}
 });
 
@@ -234,7 +239,17 @@ function toAnsPage(time){
 		//放哪一組牌對應的答案
 		$('#ans').attr('src',`./public/game2/img/answer-${card_kind}.png`);
 		$.mobile.changePage('#page_ans',{allowSamePageTransition:true,transition:"slidedown"}) // 跳頁
+		escape_error(); // 避免跳頁過程出意外
 	}, time);
+	
+}
+
+// 避免跳頁過程出意外
+function escape_error(){
+	if($('#ans').attr('src')==""){
+		reset();
+		$.mobile.changePage('#page1',{allowSamePageTransition:true,transition:"slidedown"}) // 跳頁
+	}
 }
 
 // 隨機產生數字 

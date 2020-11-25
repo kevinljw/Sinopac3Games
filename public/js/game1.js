@@ -3,22 +3,35 @@ path = 'public/game1/輪盤/'
 
 // question.csv放在github上
 // question.csv -> [quesId,title,quesDescrip,A,B,C,D,ans,ansDescrip]
-file = 'https://gist.githubusercontent.com/DysonMa/89f6d8f53ad84df07a963f8333857f39/raw/8067a74d4cedfe62e57cfea7a4b6a0b52890a43d/question.csv'
+// file = 'https://gist.githubusercontent.com/DysonMa/89f6d8f53ad84df07a963f8333857f39/raw/8067a74d4cedfe62e57cfea7a4b6a0b52890a43d/question.csv'
+file = './public/question.csv'
 
-// 用D3載入問題敘述的csv
-ques_list = []
-d3.csv(file, function(data){
-	ques_list.push(data);  //用table的方式在console呈現json
-  return ques_list;
-});
+
+ // 用D3載入問題敘述的csv
+ ques_list = []
+ d3.csv(file, function(data){
+   ques_list.push(data);  //用table的方式在console呈現json
+  //  console.log(data)
+   return ques_list;
+ });
+
+
+// 避免跳頁過程出意外
+// function escape_error(){
+// 	if($('.question').text()==""){
+// 		reset();
+//   }
+// }
+
 
 // 禁止進行任何動作
 $(document).ready(function() {  
+
   // 禁止按右鍵
   $(document).get(0).oncontextmenu = function() {
       return false;
   };
-  // 禁止按ctrl/alt/shift
+  // 禁止按ctrl/alt/shift/F5重新整理
   $(document).get(0).onkeydown = function(){
     if ( event.ctrlKey ){
         return false;
@@ -27,6 +40,10 @@ $(document).ready(function() {
         return false;
     }
     if ( event.shiftKey ){
+        return false;
+    }
+    // F5重新整理
+    if (event.keyCode==116){ 
         return false;
     }
   }
@@ -96,6 +113,7 @@ $(".turntable_btn").on("click", function(){
     stop_time = false;  // 不要停止計時
     $('.title .timeImg').html(`<div class='sec'>${sec}</div>`);  // 顯示秒數
     $.mobile.changePage(`#page_ques`,{allowSamePageTransition:true,transition:"slidedown"}) // 跳頁跳到問題頁
+    // escape_error()
     clearInterval(setint); // 清空倒數計時器，否則會一直倒數
     // 設定倒數計時器
     setint = setInterval( function(){

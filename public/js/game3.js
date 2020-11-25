@@ -37,22 +37,27 @@ const brands = [
     brandName: 'starbucks',
   }]
 
-// 網頁讀取的時候禁止動作
-$(document).ready(function(){
+// 禁止進行任何動作
+$(document).ready(function() {  
+
   // 禁止按右鍵
   $(document).get(0).oncontextmenu = function() {
-    return false;
+      return false;
   };
-  // 禁止按ctrl/alt/shift
+  // 禁止按ctrl/alt/shift/F5重新整理
   $(document).get(0).onkeydown = function(){
     if ( event.ctrlKey ){
-      return false;
+        return false;
     }
     if ( event.altKey ){
-      return false;
+        return false;
     }
     if ( event.shiftKey ){
-      return false;
+        return false;
+    }
+    // F5重新整理
+    if (event.keyCode==116){ 
+        return false;
     }
   }
   // 禁止在網頁選取
@@ -60,7 +65,6 @@ $(document).ready(function(){
     return false;
   }
 });
-
 
 // 定義參數
 let correct = 0; // 答對的數量
