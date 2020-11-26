@@ -70,6 +70,7 @@ var setint;         // 設定倒數計時器
 // 轉盤按鈕
 $(".turntable_btn").on("click", function(){
   var $this = $(this);
+  var n = 4;
   $(".card").attr('value',-1);  //初始化，把A,B,C,D四張卡片的value改為-1，才不會玩到最後通通都不是-1
 
   // 隨機選一題    
@@ -82,14 +83,14 @@ $(".turntable_btn").on("click", function(){
   $.keyframe.define([{
     name: 'go',
     '0%': {'transform': 'translate(-50%,-50%) rotate(0deg)'},
-    '100%': {'transform': 'translate(-50%,-50%) rotate('+(1080+iEnd*45)+'deg)'}  // 都先轉10圈，最後一圈才決定要轉幾度(depend on 第幾題) 
+    '100%': {'transform': 'translate(-50%,-50%) rotate('+(360*n+iEnd*45)+'deg)'}  // 都先轉10圈，最後一圈才決定要轉幾度(depend on 第幾題) 
   }]);
 
   // go動畫
   $('.turntable_btn.go').playKeyframe(
     {
     name: 'go',
-    duration: "3.5s",           // 動畫執行時間
+    duration: "2s",           // 動畫執行時間
     timingFunction: 'ease-out', // 快到慢
     iterationCount: '1',        // 只執行一次動畫
   });
